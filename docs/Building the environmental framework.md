@@ -22,7 +22,7 @@ If the installation is complete, execute the command to reboot your computer `su
 
 Execute the command `nvidia-smi` to see if the driver is successfully installed:
 
-![image-20231007114718531](https://github.com/GithubSherlock/Generating_Trajectories_via_MOT/blob/main/doc/Building%20the%20environmental%20framework.assets/image-20231007114718531.png)
+![image-20231007114718531](https://github.com/GithubSherlock/GeneratingTrajectoriesViaMOT/blob/main/docs/Building%20the%20environmental%20framework.assets/image-20231007114718531.png)
 
 ### Install CUDA
 
@@ -60,7 +60,7 @@ Save the text after adding it, then use the command `source ~/.bashrc` to read t
 
 After rebooting use the command `nvcc -V` to test if cuDNN was successfully installed:
 
-![image-20231007171601397](https://github.com/GithubSherlock/Generating_Trajectories_via_MOT/blob/main/doc/Building%20the%20environmental%20framework.assets/image-20231007171601397.png)
+![image-20231007171601397](https://github.com/GithubSherlock/GeneratingTrajectoriesViaMOT/blob/main/docs/Building%20the%20environmental%20framework.assets/image-20231007171601397.png)
 
 ### Install cuDNN
 
@@ -68,7 +68,7 @@ After rebooting use the command `nvcc -V` to test if cuDNN was successfully inst
 
 Note that in order to download cuDNN you need to register first, after completing and logging in you can download the version of cuDNN that corresponds to the version of CUDA you have installed. Here the cuDNN v8.9.4 for CUDA 11.x is used.
 
-![image-20231007172607569](https://github.com/GithubSherlock/Generating_Trajectories_via_MOT/blob/main/doc/Building%20the%20environmental%20framework.assets/image-20231007172607569.png)
+![image-20231007172607569](https://github.com/GithubSherlock/GeneratingTrajectoriesViaMOT/blob/main/docs/Building%20the%20environmental%20framework.assets/image-20231007172607569.png)
 
 To install a deb package, use the command `dpkg`:
 
