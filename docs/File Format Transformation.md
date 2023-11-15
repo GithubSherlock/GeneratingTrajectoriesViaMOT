@@ -4,13 +4,13 @@ Tracking with bounding boxes
 
 (2D MOT 2015, MOT16, MOT17, MOT20, HT21)
 
-``````python
+``````bash
 <frame>, <id>, <bb_left>, <bb_top>, <bb_width>, <bb_height>, <conf>, <x>, <y>, <z>
 ``````
 
 example:
 
-```python
+```bash
 1, 3, 794.27, 247.59, 71.245, 174.88, -1, -1, -1, -1
 1, 6, 1648.1, 119.61, 66.504, 163.24, -1, -1, -1, -1
 1, 8, 875.49, 399.98, 95.303, 233.93, -1, -1, -1, -1
