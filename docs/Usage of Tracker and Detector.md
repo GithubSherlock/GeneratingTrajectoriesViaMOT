@@ -61,12 +61,42 @@ See [Nwojke's GitHub](https://github.com/nwojke/deep_sort) for exact usage.
 
 ## Yolov8
 
-https://zhuanlan.zhihu.com/p/624244160
+YOLOv8 has added two tracking algorithms to facilitate the result of tracking the object detection and segmentation, which can be used directly in the terminal, and of course, can also be called with Python code, which is very convenient.
 
-https://zhuanlan.zhihu.com/p/621374861
+If you want to use the tracking algorithm, it is best to update YOLOv8 to the latest version:
+
+```bash
+pip install --upgrade ultralytics
+```
+
+The following command tracks the video stream on Youtube:
+
+```bash
+yolo track model=yolov8n.pt source="https://youtu.be/Zgi9g1ksQHc"
+```
+
+You can use this if you are tracking the data acquired from your camera:
+
+```bash
+yolo track model=yolov8n.pt source=0
+```
+
+"source=0" represents the device number of the camera used is 0. If there are more than one camera, you can fill in 1, 2 as appropriate. Perform object tracking on local mp4 video files:
+
+```bash
+yolo track model=yolov8n.pt source='Your_Video.mp4' save=True
+```
+
+Here is one of the commands for object detection I used:
 
 ```bash
 yolo track model=weights/hauptmensa_1.pt source="video/hauptmensa_1.mp4" conf=0.3, iou=0.5 show=True save=True tracker="bytetrack.yaml"
 ```
 
+Please reference the specific method of usage on [Yolov8 docs](https://docs.ultralytics.com/usage/cli/).
+
 ## Detectron2
+
+In the folder “tests”, there is a code using detectron2 for the object detection on images and videos. I switched to Yolov8 because the usage of this detector is too complex and minor, but I think the quest is still worthwhile!
+
+Since I'm using Yolov8 for the detector in my project, I'm not going to illustrate detectron2 here. If you are interested in this detector, please refer to the [detectron2’s documentation](https://detectron2.readthedocs.io/en/latest/index.html).
