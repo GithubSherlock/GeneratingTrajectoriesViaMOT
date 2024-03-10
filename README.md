@@ -1,5 +1,5 @@
 # Generating Trajectories via Multi-Object tracking
-Student thesis: Generating Trajectories via Multi-Object tracking
+**Semester/Project Thesis: Generating Trajectories via Multi-Object tracking**
 
 Object detection and tracking are fundamental tasks for a number of applications including autonomous vehicle and video surveillance. Specifically, information about object classes, locations as well as velocity are required in the process of environment perception. The more accurate and detailed the tracking results are, the easier for the system to manage motion planning.
 
