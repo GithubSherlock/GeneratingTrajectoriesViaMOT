@@ -81,6 +81,55 @@ def read_dataset(DATASET_PATH):
     else:
         return print("No txt files found in the directory.")
 
+def data_reorganizer(path='../data/mapython/transformed_data_np.npy'):
+    '''
+    change the tracking trajectories by:
+        - make uid unique according to classes
+
+    ----------
+    i : [frame, cx, cy, class_id, uid]
+    o : [frame, cx, cy, class_id, unique_uid]
+    -------
+
+
+    '''
+    data = np.load(path)
+    mapping = {'person': 1, 'bicycle': 2, 'car': 3}
+    
+    # replace class str by index
+    df = pd.DataFrame(data, columns=['fid','cx','cy','class','uid'])
+    df['class'] = df['class'].map(mapping) 
+    # convert str to num
+    df['fid'] = df['fid'].astype(int)
+    df['uid'] = df['uid'].astype(int)
+    df['cx'] = df['cx'].astype(float)
+    df['cy'] = df['cy'].astype(float)
+    
+    # extract users by class
+    df_ped = df[df['class']==1]
+    df_byc = df[df['class']==2]
+    df_car = df[df['class']==3]
+    
+    # count the number of each class
+    uid_ped = pd.unique(df_ped['uid'])
+    uid_byc = pd.unique(df_byc['uid'])
+    uid_car = pd.unique(df_car['uid'])
+    print('there are '+ str(len(uid_ped))+' ped, ' + str(len(uid_byc)) + \
+          ' bike, and ' + str(len(uid_car)) + ' car in current data.')
+        
+    # map new uid for different class (make uid unique)
+    new_uid_ped = np.arange(0, 0 + len(uid_ped))
+    new_uid_byc = np.arange(new_uid_ped[-1]+1, new_uid_ped[-1]+1 + len(uid_byc))
+    new_uid_car = np.arange(new_uid_byc[-1]+1, new_uid_byc[-1]+1 + len(uid_car))
+    
+    new_car = replaceDfValues(df_car, uid_car, new_uid_car, 'uid').to_numpy()
+    new_byc = replaceDfValues(df_byc, uid_byc, new_uid_byc, 'uid').to_numpy()
+    new_ped = replaceDfValues(df_ped, uid_ped, new_uid_ped, 'uid').to_numpy()
+    
+    new_data =  np.concatenate((new_car, new_byc, new_ped))
+    
+    return new_data
+
 class Coordinate:
     def __init__(self, x, y):
         """
@@ -421,6 +470,7 @@ if __name__ == "__main__":
         transformed_coordinates = coord.coordinates_inSatelliteMap(SCR, DEST, coordinates)
         transformed_data.append([int(frame_number), np.float32(transformed_coordinates[0][0][0]), np.float32(transformed_coordinates[0][0][1]), cls_id, int(obj_id)])
     transformed_data_np = np.asarray(transformed_data)
-
-    visualising_animation(transformed_data_np, color_dict, WIDTH, HEIGHT)
+    
+    Visualizing_result = data_reorganizer(transformed_data_np)
+    visualising_animation(Visualizing_result, color_dict, WIDTH, HEIGHT)
     #visualising_animation_with_10interval(transformed_data_np, color_dict, WIDTH, HEIGHT)
